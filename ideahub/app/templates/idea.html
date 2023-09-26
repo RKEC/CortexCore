@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block title %} - Ideas{% endblock %}
+{% block content %}
+<table>
+    {% for idea in ideas %}
+
+    <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Date Added</th>
+        <th>Priority</th>
+        <th>Status</th>
+    </tr>
+    <tr>
+        <td>{{ idea.title }}</td>
+        <td>{{ idea.content }}</td>
+        <td>{{ idea.dateAdded }}</td>
+        <td>{{ idea.priority }}</td>
+        <td>{% if idea.status %} Completed {% else %} Not Completed {% endif %}</td>
+        <td><a href="{% url 'delete' idea.pk %}">Delete</a></td>
+    </tr>
+
+    {% empty %}
+    <p>No results found</p>
+
+    {% endfor %}
+</table>
+{% endblock %}
