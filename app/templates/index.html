@@ -2,11 +2,20 @@
 {% block title %} - Search ideas{% endblock %}
 {% block content %}
 
-<form method="get" action="{% url 'idea_search' %}">
-    <input type="text" name="search" placeholder="Search ideas">
-    <button type="submit">Search</button>
+<!-- MDL Styled Search Form -->
+<form method="get" action="{% url 'idea_search' %}" class="mdl-textfield mdl-js-textfield">
+    <input class="mdl-textfield__input" type="text" name="search" placeholder="Search ideas" id="search">
+    <label class="mdl-textfield__label" for="search"></label>
+    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+        Search
+    </button>
 </form>
-<form action="{% url 'add_idea' %}">
-    <button type="submit">Add idea</button>
+
+<!-- MDL Styled Add Button -->
+<form action="{% url 'add_idea' %}" style="margin-top: 20px;">
+    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+        Add idea
+    </button>
 </form>
+
 {% endblock %}

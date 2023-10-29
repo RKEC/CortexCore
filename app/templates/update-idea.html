@@ -1,11 +1,38 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Edit Idea</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save changes</button>
-  </form>
-  <a href="{% url 'idea' %}">Back to list</a>
+<div class="mdl-grid">
+  <div class="mdl-layout-spacer"></div>
+  <div class="mdl-cell mdl-cell--middle mdl-cell--6-col mdl-card mdl-shadow--4dp">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">Edit Idea</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <form method="post" action="">
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.help_text %}
+              <span class="mdl-textfield__help">{{ field.help_text }}</span>
+            {% endif %}
+            {% for error in field.errors %}
+              <span class="mdl-textfield__error">{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% endfor %}
+        <div class="mdl-card__actions mdl-card--border">
+          <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+            Save changes
+          </button>
+          <a href="{% url 'idea' %}" class="mdl-button mdl-js-button mdl-button--raised">
+            Back to list
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="mdl-layout-spacer"></div>
+</div>
 {% endblock %}

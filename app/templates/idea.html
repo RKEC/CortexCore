@@ -1,28 +1,43 @@
-{% extends "base.html" %} {% block title %} - Ideas{% endblock %}
+{% extends "base.html" %}
+
+{% block title %} - Ideas{% endblock %}
+
 {% block content %}
-<table>
-    {% for idea in ideas %}
-
-    <tr>
-        <th>Title</th>
-        <th>Content</th>
-        <th>Date Added</th>
-        <th>Priority</th>
-        <th>Status</th>
-    </tr>
-    <tr>
-        <td>{{ idea.title }}</td>
-        <td>{{ idea.content }}</td>
-        <td>{{ idea.dateAdded }}</td>
-        <td>{{ idea.priority }}</td>
-        <td>{% if idea.status %} Completed {% else %} Not Completed {% endif %}</td>
-        <td><a href="{% url 'update_idea' pk=idea.id %}">Edit</a></td>
-        <td><a href="{% url 'delete' idea.pk %}">Delete</a></td>
-    </tr>
-
-    {% empty %}
-    <p>No results found</p>
-
-    {% endfor %}
+<!-- MDL Styled Table -->
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+        <tr>
+            <th class="mdl-data-table__cell--non-numeric">Title</th>
+            <th class="mdl-data-table__cell--non-numeric">Content</th>
+            <th class="mdl-data-table__cell--non-numeric">Date Added</th>
+            <th class="mdl-data-table__cell--non-numeric">Priority</th>
+            <th class="mdl-data-table__cell--non-numeric">Status</th>
+            <th class="mdl-data-table__cell--non-numeric">Edit</th>
+            <th class="mdl-data-table__cell--non-numeric">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for idea in ideas %}
+        <tr>
+            <td class="mdl-data-table__cell--non-numeric">{{ idea.title }}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{ idea.content }}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{ idea.dateAdded }}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{ idea.priority }}</td>
+            <td class="mdl-data-table__cell--non-numeric">
+                {% if idea.status %} Completed {% else %} Not Completed {% endif %}
+            </td>
+            <td class="mdl-data-table__cell--non-numeric">
+                <a href="{% url 'update_idea' pk=idea.id %}">Edit</a>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric">
+                <a href="{% url 'delete' idea.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td class="mdl-data-table__cell--non-numeric" colspan="7">No results found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 {% endblock %}

@@ -1,9 +1,33 @@
-{% extends "base.html" %} {% block title %} - Add new idea{% endblock %}
+{% extends "base.html" %}
+{% block title %} - Add new idea{% endblock %}
 {% block content %}
-<form method="post" action="{% url 'add_idea' %}">
+<form method="post" action="{% url 'add_idea' %}" class="mdl-grid">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
+    {% for field in form %}
+        <div class="mdl-cell mdl-cell--12-col">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.help_text %}
+                    <span class="mdl-textfield__help">{{ field.help_text }}</span>
+                {% endif %}
+                {% for error in field.errors %}
+                    <span class="mdl-textfield__error">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+    <div class="mdl-cell mdl-cell--12-col">
+        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+            Submit
+        </button>
+    </div>
 </form>
-<a href="{% url 'idea' %}">Back to list</a>
+
+<div class="mdl-cell mdl-cell--12-col">
+    <a href="{% url 'idea' %}" class="mdl-button mdl-js-button mdl-button--raised">
+        Back to list
+    </a>
+</div>
+
 {% endblock %}
