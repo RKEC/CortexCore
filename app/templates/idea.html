@@ -16,6 +16,7 @@
         <td>{{ idea.dateAdded }}</td>
         <td>{{ idea.priority }}</td>
         <td>{% if idea.status %} Completed {% else %} Not Completed {% endif %}</td>
+        <td><a href="{% url 'update_idea' pk=idea.id %}">Edit</a></td>
         <td><a href="{% url 'delete' idea.pk %}">Delete</a></td>
     </tr>
 

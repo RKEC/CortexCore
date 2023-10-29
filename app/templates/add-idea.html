@@ -2,23 +2,8 @@
 {% block content %}
 <form method="post" action="{% url 'add_idea' %}">
     {% csrf_token %}
-
-    <label for="{{ form.title.id_for_label }}">Title:</label>
-    {{ form.title }}
-    <br>
-
-    <label for="{{ form.content.id_for_label }}">Content:</label>
-    {{ form.content }}
-    <br>
-
-    <label for="{{ form.priority.id_for_label }}">Priority:</label>
-    {{ form.priority }}
-    <br>
-
-    <label for="{{ form.dateAdded.id_for_label }}"></label>
-    {{ form.dateAdded }}
-    <br>
-
+    {{ form.as_p }}
     <button type="submit">Submit</button>
 </form>
+<a href="{% url 'idea' %}">Back to list</a>
 {% endblock %}
