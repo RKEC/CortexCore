@@ -1,0 +1,71 @@
+:root {
+  --primary-font: 'Noto Sans JP', sans-serif;
+  --secondary-font: 'Share Tech Mono', monospace;
+  --primary-color: #5F85DB;
+  --hover-color: #5175c7;
+  --background-color-primary: #353941;
+  --background-color-secondary: #26282B;
+  --text-brightness-dark: 0.8;
+  --text-contrast-dark: 1.2;
+  
+  color-scheme: light dark; /* both supported */
+}
+
+body {
+  font-family: var(--primary-font);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--background-color-primary);
+  }
+
+  .container {
+    width: 100vw;
+    height: 50vh;
+    margin: auto;
+    margin-top: 25vh;
+
+    h1 {
+      font-family: var(--secondary-font);
+      font-size: 8vw;
+      font-weight: 600;
+      text-align: center;
+
+      a {
+        text-decoration: none;
+        color: var(--primary-color);
+      }
+
+      a:hover {
+        color: var(--hover-color);
+      }
+    }
+
+    .search-form {
+      width: 60%;
+      height: 5vh;
+      margin: auto;
+      
+      .search-input {
+        width: 100%;
+        height: 90%;
+        background-color: var(--background-color-secondary);
+        font-size: 1.5rem;
+        padding: 0rem 1rem;
+        outline: none;
+        -webkit-appearance: none;
+        border: none;
+        border-radius: 15rem;
+      }
+
+      .search-button {
+
+      }
+    }
+  }
+
+  img {
+    filter: brightness(var(--text-brightness-dark)) contrast(var(--text-contrast-dark));
+  }
+}
